@@ -16,10 +16,10 @@ const homeReducer = (state = INITIAL_STATE, action) => {
     }
     // Manage results and reset loading state.
     case types.RECEIVE_QUESTIONS: {
-      const { tweets } = action;
+      const { questions } = action;
       return {
         ...state,
-        questions: tweets,
+        questions: questions,
         loading: false
       };
     }
