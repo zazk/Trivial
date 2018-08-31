@@ -2,12 +2,23 @@ import { connect } from 'react-redux';
 import GameComponent from './GameComponent';
 import { homeOperations } from './state';
 // set props to send to component
-const mapStateToProps = state => {
-  console.log('STATE', state);
+const mapStateToProps = (state, props) => {
   const { questions, loading } = state.home;
+  const { visible } = props;
+  const gameResults = {
+    total: questions.length,
+    visible: false,
+    right: 0,
+    questions: questions.map(data => ({
+      question: data.question,
+      right: data.correct_answer
+    }))
+  };
   return {
     questions,
-    loading
+    loading,
+    visible,
+    gameResults
   };
 };
 // manage dispatch action
