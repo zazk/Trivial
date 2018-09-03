@@ -1,7 +1,7 @@
 import types from './types.js';
 
 // Setup the actions
-const requestQuestions = term => ({
+const requestQuestions = () => ({
   type: types.REQUEST_QUESTIONS,
   questions: []
 });

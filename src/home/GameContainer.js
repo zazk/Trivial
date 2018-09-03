@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import GameComponent from './GameComponent';
 import actions from './state/actions';
+import { homeOperations } from './state';
 // set props to send to component
 const mapStateToProps = (state, props) => {
   const { loading, active, game, end } = state.home;
@@ -19,7 +20,7 @@ const mapDispatchToProps = dispatch => {
     dispatch(actions.setActiveQuestion(item, answer));
   };
   const playAgain = () => {
-    dispatch(actions.playAgain());
+    dispatch(homeOperations.fetchQuestions());
   };
   return { setActiveQuestion, playAgain };
 };

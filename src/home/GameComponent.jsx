@@ -50,22 +50,24 @@ const Question = ({ data, len, onYes, onNo }) => (
     </div>
   </div>
 );
-const Results = ({ results, onPlayAgain }) => (
-  <div>
-    <h3>
-      You Scored: {results.right} of {results.total}{' '}
-    </h3>
-    <div className="answers">
-      {results.questions.map((data, index) => (
-        <div key={index} className="answer">
-          <div>{!data.right ? '-' : '+'}</div>
-          <div dangerouslySetInnerHTML={{ __html: data.question }} />
-        </div>
-      ))}
-    </div>
+const Results = ({ results, onPlayAgain }) => {
+  return (
     <div>
-      <button onClick={onPlayAgain}>PLAY AGAIN</button>
+      <h3>
+        You Scored: {results.right} of {results.total}{' '}
+      </h3>
+      <div className="answers">
+        {results.questions.map((data, index) => (
+          <div key={index} className="answer">
+            <div>{data.right === data.answer ? '+' : '-'}</div>
+            <div dangerouslySetInnerHTML={{ __html: data.question }} />
+          </div>
+        ))}
+      </div>
+      <div>
+        <button onClick={onPlayAgain}>PLAY AGAIN</button>
+      </div>
     </div>
-  </div>
-);
+  );
+};
 export default GameComponent;

@@ -29,15 +29,18 @@ const homeReducer = (state = INITIAL_STATE, action) => {
       };
     }
     case types.SET_ACTIVE_QUESTION: {
-      const active = state.game.questions[action.active.index + 1];
-      if (active) {
-        state.game.questions[action.active.index].answer = action.answer;
-      } else {
+      const next = state.game.questions[action.active.index + 1];
+      const index = action.active.index;
+      const right = action.answer === action.active.right;
+      state.game.questions[index].answer = action.answer;
+      state.game.questions[index].right = right;
+      state.game.right = right ? state.game.right + 1 : state.game.right;
+      if (!next) {
         state.end = true;
       }
       return {
         ...state,
-        active: active ? active : state.active
+        active: next ? next : state.active
       };
     }
     case types.END_GAME: {

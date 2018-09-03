@@ -18,7 +18,7 @@ const fetchQuestions = () => {
             question: data.question,
             index: index,
             category: data.category,
-            right: data.correct_answer,
+            right: data.correct_answer === 'True',
             answer: null
           }))
         };
