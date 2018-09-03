@@ -49,6 +49,12 @@ const homeReducer = (state = INITIAL_STATE, action) => {
         end: true
       };
     }
+    case types.PLAY_AGAIN: {
+      return {
+        ...state,
+        end: false
+      };
+    }
     default:
       return state;
   }

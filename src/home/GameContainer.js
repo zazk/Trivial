@@ -21,6 +21,7 @@ const mapDispatchToProps = dispatch => {
   };
   const playAgain = () => {
     dispatch(homeOperations.fetchQuestions());
+    dispatch(actions.playAgain());
   };
   return { setActiveQuestion, playAgain };
 };
