@@ -1,57 +1,57 @@
 import React from 'react';
 // Receive states and action dispatch function
-class GameComponent extends React.Component {
-  componentWillMount() {
-    this.props.fetchQuestions();
-  }
-  handleClick() {
-    this.setState({ visible: false });
-  }
+const GameComponent = ({
+  end,
+  game,
+  active,
+  playAgain,
+  setActiveQuestion,
+  visible,
+  loading
+}) => {
   // show questions
-  render() {
-    return (
-      <div className={this.props.visible ? 'show' : 'hide'}>
-        <div className="game">
-          {!this.props.loading ? (
-            <div>
-              {this.props.questions.map((data, index) => (
+  return (
+    <div className={visible ? 'show' : 'hide'}>
+      {!loading ? (
+        <div>
+          {!end ? (
+            <div className="game">
+              <div>
                 <Question
-                  key={index}
-                  index={index + 1}
-                  data={data}
-                  len={this.props.questions.length}
+                  data={active}
+                  len={game.questions.length}
+                  onYes={() => setActiveQuestion(active, true)}
+                  onNo={() => setActiveQuestion(active, false)}
                 />
-              ))}
+              </div>
             </div>
           ) : (
-            <div className="bar-actions">Loading Questions...</div>
+            <Results results={game} onPlayAgain={() => playAgain()} />
           )}
         </div>
-        <Results
-          results={this.props.gameResults}
-          onPlayAgain={this.handleClick.bind(this)}
-        />
-      </div>
-    );
-  }
-}
-const Question = ({ data, index, len }) => (
+      ) : (
+        <div className="bar-actions">Loading Questions...</div>
+      )}
+    </div>
+  );
+};
+const Question = ({ data, len, onYes, onNo }) => (
   <div>
     <h3>{data.category}</h3>
     <div>
       <div dangerouslySetInnerHTML={{ __html: data.question }} />
     </div>
     <div>
-      {index} of {len}
+      {data.index + 1} of {len}
     </div>
     <div>
-      <button>FALSE</button>
-      <button>TRUE</button>
+      <button onClick={onNo}>FALSE</button>
+      <button onClick={onYes}>TRUE</button>
     </div>
   </div>
 );
 const Results = ({ results, onPlayAgain }) => (
-  <div className={results.visible ? 'show' : 'hide'}>
+  <div>
     <h3>
       You Scored: {results.right} of {results.total}{' '}
     </h3>

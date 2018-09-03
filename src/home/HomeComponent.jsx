@@ -3,6 +3,9 @@ import GameContainer from './GameContainer';
 // Just setup de wrapper to the Game Container.
 class HomeComponent extends React.Component {
   state = { show: true };
+  componentDidMount() {
+    this.props.fetchQuestions();
+  }
   handleClick() {
     this.setState({ show: false });
   }
