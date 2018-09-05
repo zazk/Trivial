@@ -6,7 +6,8 @@ const INITIAL_STATE = {
   active: null,
   game: null,
   start: false,
-  end: false
+  end: false,
+  showAnswer: false
 };
 const homeReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
@@ -31,16 +32,12 @@ const homeReducer = (state = INITIAL_STATE, action) => {
     }
     case types.SET_ACTIVE_QUESTION: {
       const next = state.game.questions[action.active.index + 1];
-      const index = action.active.index;
-      const right = action.answer === action.active.right;
-      state.game.questions[index].answer = action.answer;
-      state.game.questions[index].right = right;
-      state.game.right = right ? state.game.right + 1 : state.game.right;
       if (!next) {
         state.end = true;
       }
       return {
         ...state,
+        showAnswer: false,
         active: next ? next : state.active
       };
     }
@@ -54,6 +51,17 @@ const homeReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         start: true
+      };
+    }
+    case types.SHOW_ANSWER: {
+      const index = action.active.index;
+      const right = action.answer === action.active.right;
+      state.game.questions[index].answer = action.answer;
+      state.game.questions[index].right = right;
+      state.game.right = right ? state.game.right + 1 : state.game.right;
+      return {
+        ...state,
+        showAnswer: true
       };
     }
     case types.PLAY_AGAIN: {

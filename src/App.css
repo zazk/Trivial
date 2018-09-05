@@ -1,6 +1,7 @@
 .App {
   text-align: center;
   color: rgb(109, 106, 134);
+  animation: fadein 2s;
 }
 
 .landing,
@@ -15,20 +16,26 @@
   flex-direction: column;
   padding: 20px;
   margin: 40px;
+  animation: fadein 2s;
+}
+.animate {
+  animation: fadein 2s;
 }
 .answers {
   padding: 20px;
 }
 .answers .answer {
   padding: 10px;
+  border-bottom: 1px dashed lightgray;
+  margin-bottom: 10px;
 }
-.answers .answer .comment {
+.answer .comment {
   padding: 5px 0;
 }
-.answers .answer.right .comment {
+.answer.right .comment {
   color: rgb(100, 138, 100);
 }
-.answers .answer.wrong .comment {
+.answer.wrong .comment {
   color: rgb(248, 91, 43);
 }
 .landing.hide {
@@ -39,11 +46,11 @@
   padding: 10px;
 }
 
-@keyframes App-logo-spin {
+@keyframes fadein {
   from {
-    transform: rotate(0deg);
+    opacity: 0;
   }
   to {
-    transform: rotate(360deg);
+    opacity: 1;
   }
 }

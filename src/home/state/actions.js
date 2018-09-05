@@ -10,10 +10,9 @@ const receiveQuestions = (items, game) => ({
   questions: items,
   game: game
 });
-const setActiveQuestion = (item, answer) => ({
+const setActiveQuestion = item => ({
   type: types.SET_ACTIVE_QUESTION,
-  active: item,
-  answer: answer
+  active: item
 });
 
 const playAgain = () => ({
@@ -24,10 +23,17 @@ const startGame = () => ({
   type: types.START_GAME
 });
 
+const showAnswer = (item, answer) => ({
+  type: types.SHOW_ANSWER,
+  active: item,
+  answer: answer
+});
+
 export default {
   requestQuestions,
   receiveQuestions,
   setActiveQuestion,
   startGame,
+  showAnswer,
   playAgain
 };

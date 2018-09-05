@@ -7,7 +7,8 @@ const GameComponent = ({
   playAgain,
   setActiveQuestion,
   visible,
-  loading
+  loading,
+  showAnswer
 }) => {
   // show questions
   return (
@@ -19,6 +20,7 @@ const GameComponent = ({
               <Question
                 data={active}
                 len={game.questions.length}
+                showAnswer={showAnswer}
                 onYes={() => setActiveQuestion(active, true)}
                 onNo={() => setActiveQuestion(active, false)}
               />
@@ -33,22 +35,30 @@ const GameComponent = ({
     </div>
   );
 };
-const Question = ({ data, len, onYes, onNo }) => (
+const Question = ({ data, len, showAnswer, onYes, onNo }) => (
   <Fragment>
     <div>
-      <h3>{data.category}</h3>
+      <h3 className="animate">{data.category}</h3>
       <div>
         {data.index + 1} of {len}
       </div>
     </div>
     <div className="question">
       <div>
-        <div dangerouslySetInnerHTML={{ __html: data.question }} />
+        <div
+          className="animate"
+          dangerouslySetInnerHTML={{ __html: data.question }}
+        />
       </div>
     </div>
     <div className="actions">
-      <button onClick={onNo}>FALSE</button>
-      <button onClick={onYes}>TRUE</button>
+      <div className={showAnswer ? 'show' : 'hide'}>
+        <Answer data={data} showQuestion={false} />
+      </div>
+      <div className={!showAnswer ? 'show' : 'hide'}>
+        <button onClick={onNo}>FALSE</button>
+        <button onClick={onYes}>TRUE</button>
+      </div>
     </div>
   </Fragment>
 );
@@ -69,13 +79,16 @@ const Results = ({ results, onPlayAgain }) => {
     </div>
   );
 };
-const Answer = ({ data }) => {
+const Answer = ({ data, showQuestion = true }) => {
   const isRight = data.right === data.answer;
-  const comment = isRight ? 'Great, you were right!' : 'Try next time';
+  const comment = isRight ? 'Great, you were right!' : 'Wrong. Try next time';
   const className = isRight ? 'right' : 'wrong';
   return (
     <div className={'answer ' + className}>
-      <div dangerouslySetInnerHTML={{ __html: data.question }} />
+      <div
+        className={showQuestion ? 'show' : 'hide'}
+        dangerouslySetInnerHTML={{ __html: data.question }}
+      />
       <div className="comment">
         Your answer: <strong>{data.answer ? 'True' : 'False'}. </strong>
         {comment}
