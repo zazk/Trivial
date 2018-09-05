@@ -1,17 +1,22 @@
 import { connect } from 'react-redux';
 import HomeComponent from './HomeComponent';
 import { homeOperations } from './state';
+import actions from './state/actions';
 const mapStateToProps = state => {
-  const { loading } = state.home;
+  const { loading, start } = state.home;
   return {
-    loading
+    loading,
+    start
   };
 };
 const mapDispatchToProps = dispatch => {
+  const startGame = () => {
+    dispatch(actions.startGame());
+  };
   const fetchQuestions = () => {
     dispatch(homeOperations.fetchQuestions());
   };
-  return { fetchQuestions };
+  return { startGame, fetchQuestions };
 };
 const HomeContainer = connect(
   mapStateToProps,

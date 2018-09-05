@@ -6,12 +6,15 @@
 .landing,
 .game,
 .results {
+  background: white;
+  box-shadow: 0 0 20px gray;
   min-height: 400px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-direction: column;
-  padding: 30px;
+  padding: 20px;
+  margin: 40px;
 }
 .answers {
   padding: 20px;

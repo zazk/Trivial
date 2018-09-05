@@ -5,6 +5,7 @@ const INITIAL_STATE = {
   questions: [],
   active: null,
   game: null,
+  start: false,
   end: false
 };
 const homeReducer = (state = INITIAL_STATE, action) => {
@@ -49,9 +50,16 @@ const homeReducer = (state = INITIAL_STATE, action) => {
         end: true
       };
     }
+    case types.START_GAME: {
+      return {
+        ...state,
+        start: true
+      };
+    }
     case types.PLAY_AGAIN: {
       return {
         ...state,
+        start: false,
         end: false
       };
     }

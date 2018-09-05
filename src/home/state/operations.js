@@ -7,6 +7,12 @@ const fetchQuestions = () => {
     // Dispatch action request
     dispatch(actions.requestQuestions());
     return fetch(`${types.API}`)
+      .then(response => {
+        if (!response.ok) {
+          throw Error(response.statusText);
+        }
+        return response;
+      })
       .then(response => response.json())
       .then(json => {
         const items = json.results ? json.results : [];

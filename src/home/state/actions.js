@@ -20,9 +20,14 @@ const playAgain = () => ({
   type: types.PLAY_AGAIN
 });
 
+const startGame = () => ({
+  type: types.START_GAME
+});
+
 export default {
   requestQuestions,
   receiveQuestions,
   setActiveQuestion,
+  startGame,
   playAgain
 };

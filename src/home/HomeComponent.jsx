@@ -6,22 +6,20 @@ class HomeComponent extends Component {
   componentDidMount() {
     this.props.fetchQuestions();
   }
-  handleClick() {
-    this.setState({ show: false });
-  }
   render() {
     return (
       <Fragment>
         <Landing
-          visible={this.state.show}
-          onClick={this.handleClick.bind(this)}
+          start={this.props.start}
+          visible={!this.props.start}
+          onClick={() => this.props.startGame()}
         />
-        <GameContainer visible={!this.state.show} />
+        <GameContainer visible={this.props.start} />
       </Fragment>
     );
   }
 }
-const Landing = ({ visible, onClick }) => (
+const Landing = ({ start, visible, onClick }) => (
   <div className={'landing ' + (visible ? 'show' : 'hide')}>
     <h4>Welcome to the Challenge</h4>
     <div className="landing-content">
@@ -35,7 +33,9 @@ const Landing = ({ visible, onClick }) => (
       <div>Can you score 100%?</div>
     </div>
     <div className="actions">
-      <button onClick={onClick}>BEGIN</button>
+      <button disabled={start} onClick={onClick}>
+        BEGIN
+      </button>
     </div>
   </div>
 );
