@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 const Landing = ({ start, visible, onClick }) => (
   <div className={`landing  ${visible ? "show" : "hide"}`}>
@@ -20,5 +21,11 @@ const Landing = ({ start, visible, onClick }) => (
     </div>
   </div>
 );
+
+Landing.propTypes = {
+  start: PropTypes.func.isRequired,
+  visible: PropTypes.bool,
+  onClick: PropTypes.func
+};
 
 export default Landing;
