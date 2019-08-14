@@ -1,26 +1,8 @@
-import React, { Component, Fragment } from 'react';
-import GameContainer from './GameContainer';
-// Just setup de wrapper to the Game Container.
-class HomeComponent extends Component {
-  state = { show: true };
-  componentDidMount() {
-    this.props.fetchQuestions();
-  }
-  render() {
-    return (
-      <Fragment>
-        <Landing
-          start={this.props.start}
-          visible={!this.props.start}
-          onClick={() => this.props.startGame()}
-        />
-        <GameContainer visible={this.props.start} />
-      </Fragment>
-    );
-  }
-}
+import React, { useEffect } from "react";
+import GameContainer from "./GameContainer";
+
 const Landing = ({ start, visible, onClick }) => (
-  <div className={'landing ' + (visible ? 'show' : 'hide')}>
+  <div className={"landing " + (visible ? "show" : "hide")}>
     <h4>Welcome to the Challenge</h4>
     <div className="landing-content">
       <div>
@@ -39,4 +21,18 @@ const Landing = ({ start, visible, onClick }) => (
     </div>
   </div>
 );
+
+// Just setup de wrapper to the Game Container.
+const HomeComponent = ({ fetchQuestions, startGame, start }) => {
+  useEffect(() => {
+    fetchQuestions();
+  }, [fetchQuestions]);
+  return (
+    <>
+      <Landing start={start} visible={!start} onClick={() => startGame()} />
+      <GameContainer visible={start} />
+    </>
+  );
+};
+
 export default HomeComponent;
