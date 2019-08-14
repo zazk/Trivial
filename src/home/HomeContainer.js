@@ -1,7 +1,8 @@
-import { connect } from 'react-redux';
-import HomeComponent from './HomeComponent';
-import { homeOperations } from './state';
-import actions from './state/actions';
+import { connect } from "react-redux";
+import HomeComponent from "./HomeComponent";
+import { homeOperations } from "./state";
+import actions from "./state/actions";
+
 const mapStateToProps = state => {
   const { loading, start } = state.home;
   return {
@@ -9,6 +10,7 @@ const mapStateToProps = state => {
     start
   };
 };
+
 const mapDispatchToProps = dispatch => {
   const startGame = () => {
     dispatch(actions.startGame());
@@ -18,6 +20,7 @@ const mapDispatchToProps = dispatch => {
   };
   return { startGame, fetchQuestions };
 };
+
 const HomeContainer = connect(
   mapStateToProps,
   mapDispatchToProps
