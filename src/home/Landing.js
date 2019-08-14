@@ -1,9 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const Landing = ({ start, visible, onClick, handleCategory }) => {
-  //const [cat, setCat] = useState("");
-  // const setCategory = () =>
+const Landing = ({ loading, visible, onClick, categories, handleCategory }) => {
   const setCategory = cat => {
     handleCategory(cat);
   };
@@ -23,17 +21,24 @@ const Landing = ({ start, visible, onClick, handleCategory }) => {
       <div>
         <select onChange={e => setCategory(e.target.value)}>
           <option value={null}>Select</option>
-          <option value="General Knowledge">General Knowledge</option>
-          <option value="Entertainment">Entertainment</option>
+          {categories.map((category, index) => (
+            <option key={index} value={category}>
+              {category}
+            </option>
+          ))}
         </select>
       </div>
       <div className="actions">
-        <button disabled={start} onClick={() => onClick()}>
+        <button disabled={loading} onClick={() => onClick()}>
           BEGIN
         </button>
       </div>
     </div>
   );
+};
+
+Landing.defaultProps = {
+  categories: []
 };
 
 Landing.propTypes = {

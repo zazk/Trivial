@@ -15,11 +15,13 @@ const fetchQuestions = category => {
       })
       .then(response => response.json())
       .then(json => {
-        let items = json.results ? json.results : [];
-        let questions = !category
+        const items = json.results ? json.results : [];
+        const categories = {};
+        items.map(item => (categories[item.category] = true));
+        const questions = (!category
           ? items
-          : items.filter(question => question.category.indexOf(category) >= 0);
-        questions = questions.map((data, index) => ({
+          : items.filter(question => question.category.indexOf(category) >= 0)
+        ).map((data, index) => ({
           question: data.question,
           index: index,
           category: data.category,
@@ -31,10 +33,9 @@ const fetchQuestions = category => {
           total: questions.length,
           visible: false,
           right: 0,
-          questions: questions
+          questions: questions,
+          categories: Object.keys(categories)
         };
-
-        console.log("GPGPGP", game);
         // dispatch action when finish the fetch and send the results
         dispatch(actions.receiveQuestions(items, game));
       });

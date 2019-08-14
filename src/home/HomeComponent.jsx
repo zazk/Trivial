@@ -4,7 +4,13 @@ import GameContainer from "./GameContainer";
 import Landing from "./Landing";
 
 // Just setup de wrapper to the Game Container.
-const HomeComponent = ({ fetchQuestions, startGame, start }) => {
+const HomeComponent = ({
+  fetchQuestions,
+  startGame,
+  start,
+  loading,
+  categories
+}) => {
   useEffect(() => {
     fetchQuestions();
   }, [fetchQuestions]);
@@ -16,7 +22,9 @@ const HomeComponent = ({ fetchQuestions, startGame, start }) => {
       <Landing
         start={start}
         visible={!start}
+        loading={loading}
         onClick={() => startGame()}
+        categories={categories}
         handleCategory={handleCategory}
       />
       <GameContainer visible={start} />

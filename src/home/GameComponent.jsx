@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from "react";
 // Receive states and action dispatch function
 const GameComponent = ({
   end,
@@ -12,10 +12,10 @@ const GameComponent = ({
 }) => {
   // show questions
   return (
-    <div className={visible ? 'show' : 'hide'}>
+    <div className={visible ? "show" : "hide"}>
       {!loading ? (
         <div>
-          {!end ? (
+          {!end && game.questions.length > 0 ? (
             <div className="game">
               <Question
                 data={active}
@@ -36,7 +36,7 @@ const GameComponent = ({
   );
 };
 const Question = ({ data, len, showAnswer, onYes, onNo }) => (
-  <Fragment>
+  <>
     <div>
       <h3 className="animate">{data.category}</h3>
       <div>
@@ -52,21 +52,21 @@ const Question = ({ data, len, showAnswer, onYes, onNo }) => (
       </div>
     </div>
     <div className="actions">
-      <div className={showAnswer ? 'show' : 'hide'}>
+      <div className={showAnswer ? "show" : "hide"}>
         <Answer data={data} showQuestion={false} />
       </div>
-      <div className={!showAnswer ? 'show' : 'hide'}>
+      <div className={!showAnswer ? "show" : "hide"}>
         <button onClick={onNo}>FALSE</button>
         <button onClick={onYes}>TRUE</button>
       </div>
     </div>
-  </Fragment>
+  </>
 );
 const Results = ({ results, onPlayAgain }) => {
   return (
     <div className="results">
       <h3>
-        You Scored: {results.right} of {results.total}{' '}
+        You Scored: {results.right} of {results.total}{" "}
       </h3>
       <div className="answers">
         {results.questions.map((data, index) => (
@@ -81,16 +81,16 @@ const Results = ({ results, onPlayAgain }) => {
 };
 const Answer = ({ data, showQuestion = true }) => {
   const isRight = data.right === data.answer;
-  const comment = isRight ? 'Great, you were right!' : 'Wrong. Try next time';
-  const className = isRight ? 'right' : 'wrong';
+  const comment = isRight ? "Great, you were right!" : "Wrong. Try next time";
+  const className = isRight ? "right" : "wrong";
   return (
-    <div className={'answer ' + className}>
+    <div className={"answer " + className}>
       <div
-        className={showQuestion ? 'show' : 'hide'}
+        className={showQuestion ? "show" : "hide"}
         dangerouslySetInnerHTML={{ __html: data.question }}
       />
       <div className="comment">
-        Your answer: <strong>{data.answer ? 'True' : 'False'}. </strong>
+        Your answer: <strong>{data.answer ? "True" : "False"}. </strong>
         {comment}
       </div>
     </div>

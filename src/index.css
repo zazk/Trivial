@@ -14,3 +14,9 @@ button {
   font-size: 16px;
   color: rgb(109, 106, 134);
 }
+
+button:disabled {
+  color: #eeeeee;
+  background: #f9f9f9;
+  border-color: #eeeeee;
+}

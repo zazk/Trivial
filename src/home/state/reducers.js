@@ -4,7 +4,7 @@ const INITIAL_STATE = {
   loading: true,
   questions: [],
   active: null,
-  game: null,
+  game: {},
   start: false,
   end: false,
   category: "",

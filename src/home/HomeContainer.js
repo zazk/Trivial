@@ -4,10 +4,11 @@ import { homeOperations } from "./state";
 import actions from "./state/actions";
 
 const mapStateToProps = state => {
-  const { loading, start } = state.home;
+  const { loading, start, game } = state.home;
   return {
     loading,
-    start
+    start,
+    categories: game.categories
   };
 };
 
