@@ -23,7 +23,7 @@ const Landing = ({ start, visible, onClick }) => (
 );
 
 Landing.propTypes = {
-  start: PropTypes.func.isRequired,
+  start: PropTypes.bool,
   visible: PropTypes.bool,
   onClick: PropTypes.func
 };
