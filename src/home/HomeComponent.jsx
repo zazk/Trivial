@@ -8,9 +8,17 @@ const HomeComponent = ({ fetchQuestions, startGame, start }) => {
   useEffect(() => {
     fetchQuestions();
   }, [fetchQuestions]);
+  const handleCategory = cat => {
+    fetchQuestions(cat);
+  };
   return (
     <>
-      <Landing start={start} visible={!start} onClick={() => startGame()} />
+      <Landing
+        start={start}
+        visible={!start}
+        onClick={() => startGame()}
+        handleCategory={handleCategory}
+      />
       <GameContainer visible={start} />
     </>
   );

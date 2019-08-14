@@ -1,11 +1,12 @@
-const REQUEST_QUESTIONS = 'REQUEST_QUESTIONS';
-const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS';
-const SET_ACTIVE_QUESTION = 'SET_ACTIVE_QUESTION';
-const START_GAME = 'START_GAME';
-const SHOW_ANSWER = 'SHOW_ANSWER';
-const PLAY_AGAIN = 'PLAY_AGAIN';
+const REQUEST_QUESTIONS = "REQUEST_QUESTIONS";
+const RECEIVE_QUESTIONS = "RECEIVE_QUESTIONS";
+const SET_ACTIVE_QUESTION = "SET_ACTIVE_QUESTION";
+const START_GAME = "START_GAME";
+const SHOW_ANSWER = "SHOW_ANSWER";
+const PLAY_AGAIN = "PLAY_AGAIN";
+const SET_CATEGORY = "SET_CATEGORY";
 const API =
-  'https://opentdb.com/api.php?amount=10&difficulty=hard&type=boolean';
+  "https://opentdb.com/api.php?amount=10&difficulty=hard&type=boolean";
 
 export default {
   REQUEST_QUESTIONS,
@@ -14,5 +15,6 @@ export default {
   START_GAME,
   SHOW_ANSWER,
   PLAY_AGAIN,
+  SET_CATEGORY,
   API
 };

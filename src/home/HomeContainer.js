@@ -15,8 +15,8 @@ const mapDispatchToProps = dispatch => {
   const startGame = () => {
     dispatch(actions.startGame());
   };
-  const fetchQuestions = () => {
-    dispatch(homeOperations.fetchQuestions());
+  const fetchQuestions = cat => {
+    dispatch(homeOperations.fetchQuestions(cat));
   };
   return { startGame, fetchQuestions };
 };

@@ -1,4 +1,4 @@
-import types from './types';
+import types from "./types";
 // Setup initial state.
 const INITIAL_STATE = {
   loading: true,
@@ -7,6 +7,7 @@ const INITIAL_STATE = {
   game: null,
   start: false,
   end: false,
+  category: "",
   showAnswer: false
 };
 const homeReducer = (state = INITIAL_STATE, action) => {
@@ -69,6 +70,12 @@ const homeReducer = (state = INITIAL_STATE, action) => {
         ...state,
         start: false,
         end: false
+      };
+    }
+    case types.SET_CATEGORY: {
+      return {
+        ...state,
+        category: action.category
       };
     }
     default:

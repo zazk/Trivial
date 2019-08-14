@@ -1,4 +1,4 @@
-import types from './types.js';
+import types from "./types.js";
 
 // Setup the actions
 const requestQuestions = () => ({
@@ -29,11 +29,17 @@ const showAnswer = (item, answer) => ({
   answer: answer
 });
 
+const setCategory = category => ({
+  type: types.SET_CATEGORY,
+  category: category
+});
+
 export default {
   requestQuestions,
   receiveQuestions,
   setActiveQuestion,
   startGame,
   showAnswer,
-  playAgain
+  playAgain,
+  setCategory
 };
