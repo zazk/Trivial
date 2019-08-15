@@ -9,13 +9,14 @@ const HomeComponent = ({
   startGame,
   start,
   loading,
+  setCategory,
   categories
 }) => {
   useEffect(() => {
     fetchQuestions();
   }, [fetchQuestions]);
   const handleCategory = cat => {
-    fetchQuestions(cat);
+    setCategory(cat);
   };
   return (
     <>

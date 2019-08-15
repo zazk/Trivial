@@ -73,8 +73,16 @@ const homeReducer = (state = INITIAL_STATE, action) => {
       };
     }
     case types.SET_CATEGORY: {
+      const { game, questions } = state;
+      game.questions = questions
+        .filter(question => question.category.indexOf(action.category) >= 0)
+        .map((question, index) => {
+          question.index = index;
+          return question;
+        });
       return {
         ...state,
+        game,
         category: action.category
       };
     }

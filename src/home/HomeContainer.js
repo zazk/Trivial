@@ -19,7 +19,11 @@ const mapDispatchToProps = dispatch => {
   const fetchQuestions = cat => {
     dispatch(homeOperations.fetchQuestions(cat));
   };
-  return { startGame, fetchQuestions };
+
+  const setCategory = cat => {
+    dispatch(actions.setCategory(cat));
+  };
+  return { startGame, fetchQuestions, setCategory };
 };
 
 const HomeContainer = connect(
